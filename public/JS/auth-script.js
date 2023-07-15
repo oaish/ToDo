@@ -24,6 +24,7 @@ loginAuth.addEventListener("click", () => {
     }
     addBackListener();
 })
+
 signupAuth.addEventListener("click", () => {
     authText.innerHTML = "SignUp<span id='backBtn' class=\"close y\">&#xAB;</span>";
     authBtn.textContent = "SignUp";
