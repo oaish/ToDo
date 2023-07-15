@@ -1,7 +1,6 @@
 body {
     padding: 50px;
     height: 86vh;
-    position: relative;
     font: 1rem 'Overlock SC', sans-serif;
     background: linear-gradient(0deg, var(--color) 50%, #1c1c1c 50%);
 }
@@ -179,20 +178,9 @@ th {
 }
 
 .abs > img {
-    width: 3rem;
+    width: 2rem;
 }
 
-@media (max-width: 800px) {
-    .abs {
-        display: none;
-    }
-    .title-card {
-        background: var(--color);
-        text-align: center;
-        padding: 3rem 1rem;
-        width: 50rem;
-        font-size: 4.5rem;
-        color: white;
-        box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.5);
-    }
+#logout {
+    display: none;
 }
