@@ -19,7 +19,6 @@ body {
 
 .card {
     position: absolute;
-
     width: 25rem;
     height: 30rem;
     background: teal;
@@ -30,7 +29,7 @@ body {
 
 .back {
     background: #1c1c1c;
-    transform: translateX(98%);
+    transition: transform 2s ease;
 }
 
 .front{
@@ -44,6 +43,7 @@ body {
     margin: 30%;
     font-size: 6rem;
     color: #1c1c1c;
+    cursor: default;
 }
 
 @keyframes slide-out {
@@ -58,52 +58,11 @@ body {
     }
 }
 
-@keyframes slide-down {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(90%);
-    }
-}
-
-@media (max-width: 800px) {
-    body {
-        display: block;
-    }
-    .container {
-        width: 12.5rem;
-        height: 15rem;
-
-        margin-top: 8%;
-        position: relative;
-    }
-
-    .card {
-
-        width: 20rem;
-        height: 25rem;
-    }
-
-    .back {
-        transform: translateX(5%);
-    }
-
-    .front{
-        display: none;
-    }
-}
-
-@media (min-width: 801px) {
-    .back {
-        animation: slide-out 2s ease;
-    }
-}
-
 .back h1 {
-    margin: 10%;
+    margin: 10% 10% 5% 10%;
     font-size: 3rem;
     color: teal;
+    cursor: default;
 }
 
 .login {
@@ -126,7 +85,7 @@ body {
     font-size: 2rem;
     color: white;
     border-radius: 0 0.7rem 0 0.7rem;
-
+    cursor: text;
 }
 
 input::placeholder {
@@ -215,4 +174,79 @@ input:focus {
 .btn-no {
     background: none;
     color: teal;
+}
+
+.close:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.back-xl {
+    background: #212121;
+    transform: translateX(98%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-xl {
+    width: 16rem;
+    height: 15rem;
+    background: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 1.5rem 0 1.5rem;
+    box-shadow: -1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.card-xl > img {
+    width: 13rem;
+}
+
+.card-xl > img:hover {
+    opacity: 0.9;
+}
+
+.card-xl-2 > * {
+    color: teal;
+    background: #1c1c1c;
+    margin-inline: 0.5rem;
+}
+
+.slide-out {
+    transform: translateX(98%);
+}
+
+.close {
+    font-size: 4rem;
+}
+
+.x {
+    margin-left: 55%;
+}
+
+.y {
+    margin-left: 48%;
+}
+
+@media (max-width: 800px) {
+    .card {
+        margin-top: 10%;
+    }
+    .front {
+        display: none;
+    }
+    .back {
+        transform: none;
+    }
+    .back-xl {
+        transform: none;
+        z-index: 1;
+    }
+}
+
+.fade-in {
+    z-index: 2;
 }

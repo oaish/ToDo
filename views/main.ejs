@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overlock+SC&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/CSS/style.css' />
+    <link rel='stylesheet' href='/CSS/checkbox.css' />
+  </head>
+  <body>
+
+  <section id="title" class="flex">
+
+    <div class="theme">
+      <div class="th"></div>
+      <div class="th"></div>
+      <div class="th"></div>
+      <div class="th"></div>
+    </div>
+    <div class="title-card">
+      <h1><%= title %></h1>
+    </div>
+  </section>
+  <section id="list" class="flex">
+    <div class="list-div">
+
+      <% tasks.forEach(task => { %>
+      <div class="list-card">
+        <label class="container">
+          <%= task %>
+          <input type="checkbox" onchange="strike(this)">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <% }) %>
+
+      <div class="list-card">
+        <form action="/add" method="post" class="input-card">
+          <label for="text"></label>
+          <input type="text" class="sub-text" name="text" id="text" placeholder="Add a new task" autocomplete="off" spellcheck="true">
+          <button type="submit" class="sub-btn">+</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const themeCards = document.querySelectorAll('.th');
+    themeCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const computedStyle = window.getComputedStyle(card);
+        const backgroundColor = computedStyle.getPropertyValue('background-color');
+        document.querySelector(':root').style.setProperty('--color', backgroundColor);
+      })
+    })
+  </script>
+  <script src="/JS/script.js"></script>
+  </body>
+</html>

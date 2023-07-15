@@ -1,12 +1,53 @@
 const eye = document.querySelector(".eye")
-const user =    document.querySelector("#usr")
-const pass =    document.querySelector("#pass")
+const user = document.querySelector("#usr")
+const pass = document.querySelector("#pass")
 const login = document.querySelector(".login-btn")
 const yesBtn = document.querySelector(".btn-yes")
 const noBtn = document.querySelector(".btn-no")
 const overlay = document.querySelector(".overlay")
 const modal = document.querySelector(".modal")
 
+const backCard = document.querySelector(".back");
+const authText = document.querySelector(".AuthText");
+const authBtn = document.querySelector(".AuthBtn");
+const loginAuth = document.querySelector(".login-btn-xl");
+const signupAuth = document.querySelector(".signup-btn-xl");
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+loginAuth.addEventListener("click", () => {
+    authText.innerHTML = "Login<span id='backBtn' class=\"close x\">&#xAB;</span>";
+    authBtn.textContent = "Login";
+    if (isMobile) {
+        backCard.classList.add("fade-in");
+    } else {
+        backCard.classList.add("slide-out");
+    }
+    addBackListener();
+})
+signupAuth.addEventListener("click", () => {
+    authText.innerHTML = "SignUp<span id='backBtn' class=\"close y\">&#xAB;</span>";
+    authBtn.textContent = "SignUp";
+    if (isMobile) {
+        backCard.classList.add("fade-in");
+    } else {
+        backCard.classList.add("slide-out");
+    }
+    addBackListener();
+})
+
+function addBackListener() {
+    const backBtn = document.querySelector("#backBtn");
+    backBtn.removeEventListener("click", handleBackClick);
+    backBtn.addEventListener("click", handleBackClick);
+}
+
+function handleBackClick() {
+    if (isMobile) {
+        backCard.classList.remove("fade-in");
+    } else {
+        backCard.classList.remove("slide-out");
+    }
+}
 
 eye.onclick = function () {
     if (pass.type === "text") {

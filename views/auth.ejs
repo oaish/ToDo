@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overlock+SC&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/auth.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card back-xl">
+        <div class="card-xl">
+            <img src="/images/client.svg" alt="client">
+        </div>
+        <div class="card-xl-2">
+            <button type="button" class="btn login-btn login-btn-xl">Login</button>
+            <button type="button" class="btn login-btn signup-btn-xl">SignUp</button>
+        </div>
+    </div>
+
+
+    <div class="card back">
+        <h1 class="AuthText">Login<span id='backBtn' class="close">&#xAB;</span></h1>
+        <form class="login" action="/login" method="post">
+            <label>
+                <input type="text" name="username" id="usr" placeholder="Enter Username" autocomplete="off"
+                       spellcheck="false">
+            </label>
+            <div class="eye-cont">
+                <label class="pass">
+                    <input type="password" name="username" id="pass" placeholder="Enter Password" autocomplete="off"
+                           spellcheck="false">
+                </label>
+                <img src="/images/eye.svg" alt="eye" class="eye">
+            </div>
+            <button type="button" class="btn login-btn AuthBtn">Login</button>
+        </form>
+    </div>
+    <div class="card front">
+        <h1>ToDo List</h1>
+    </div>
+</div>
+
+<div class="overlay"></div>
+<div class="modal">
+    <h1>Account Not Found</h1>
+    <p>Do you want to create a new account?</p>
+    <button type="button" class="btn btn-yes">Yes</button>
+    <button type="button" class="btn btn-no">No</button>
+</div>
+
+<script src="/JS/login-script.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>
