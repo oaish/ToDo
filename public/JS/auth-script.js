@@ -1,38 +1,45 @@
-const eye = document.querySelector(".eye")
-const user = document.querySelector("#usr")
-const pass = document.querySelector("#pass")
-const login = document.querySelector(".AuthBtn")
-const yesBtn = document.querySelector(".btn-yes")
-const noBtn = document.querySelector(".btn-no")
-const overlay = document.querySelector(".overlay")
-const modal = document.querySelector(".modal")
-
+const eye = document.querySelector(".eye");
+const user = document.querySelector("#usr");
+const pass = document.querySelector("#pass");
+const modal = document.querySelector(".modal");
+const okBtn = document.querySelector(".btn-ok");
+const login = document.querySelector(".AuthBtn");
 const backCard = document.querySelector(".back");
-const authText = document.querySelector(".AuthText");
+const overlay = document.querySelector(".overlay");
 const authBtn = document.querySelector(".AuthBtn");
+const authText = document.querySelector(".AuthText");
+const Auth = document.querySelector(".Authentication");
+const themeCard = document.querySelector(".theme-card");
 const loginAuth = document.querySelector(".login-btn-xl");
 const signupAuth = document.querySelector(".signup-btn-xl");
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+let themes = [ "teal", "crimson", "blueviolet", "gold"]
+let themeCount = 0;
+
 loginAuth.addEventListener("click", () => {
     authText.innerHTML = "Login<span id='backBtn' class=\"close x\">&#xAB;</span>";
     authBtn.textContent = "Login";
+    Auth.setAttribute("action", "/login")
     if (isMobile) {
         backCard.classList.add("fade-in");
     } else {
         backCard.classList.add("slide-out");
     }
+    clearInput()
     addBackListener();
 })
 
 signupAuth.addEventListener("click", () => {
     authText.innerHTML = "SignUp<span id='backBtn' class=\"close y\">&#xAB;</span>";
     authBtn.textContent = "SignUp";
+    Auth.setAttribute("action", "/signup")
     if (isMobile) {
         backCard.classList.add("fade-in");
     } else {
         backCard.classList.add("slide-out");
     }
+    clearInput()
     addBackListener();
 })
 
@@ -60,7 +67,7 @@ eye.onclick = function () {
     }
 }
 
-pass.addEventListener("input", function() {
+pass.addEventListener("input", function () {
     if (pass.value) {
         eye.style.display = "unset";
     } else {
@@ -68,7 +75,8 @@ pass.addEventListener("input", function() {
     }
 })
 
-login.onclick = async function () {
+login.onclick = async function (event) {
+    event.preventDefault()
     if (user.value === "" || pass.value === "") {
         return
     }
@@ -78,49 +86,76 @@ login.onclick = async function () {
         username: user.value,
         password: pass.value
     }
-
-    const res = await fetch('/login',{
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(credentials)
-    }).then(response => response.json())
-        .then(data => {
-            if (data.auth) {
-                window.location.href = '/ToDo';
-            } else {
+    const action = Auth.getAttribute("action")
+    if (action === "/signup") {
+        const res = await fetch(action, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        }).then(response => response.json())
+            .then(data => {
                 setTimeout(() => {
                     login.style.boxShadow = "-0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5)"
                 }, 2000)
-                modalDialog("block")
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
-
-yesBtn.onclick = async function () {
-    modalDialog("none")
-    let credentials = {
-        username: user.value,
-        password: pass.value
+                data.auth && handleBackClick()
+                modalDialog("block", data)
+            })
+    } else {
+        const res = await fetch(action, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        }).then(response => response.json())
+            .then(data => {
+                setTimeout(() => {
+                    login.style.boxShadow = "-0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5)"
+                }, 2000)
+                if (data.error) {
+                    modalDialog("block", data)
+                } else if (data.auth) {
+                    window.location.href = '/ToDo';
+                }
+            })
     }
-    const res = await fetch('/signup', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(credentials)
-    })
 }
 
-noBtn.onclick = function () {
-    modalDialog("none")
+okBtn.onclick = async function () {
+    okBtn.style.boxShadow = "inset -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5)"
+    setTimeout(() => {
+        okBtn.style.boxShadow = "-0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5)"
+        modalDialog("none")
+    }, 300)
 }
 
-function modalDialog(option) {
+themeCard.addEventListener('click', () => {
+    const root = document.querySelector(":root")
+    themeCount = themeCount === 3? 0 : ++themeCount
+    themeCard.style.boxShadow = "none"
+    setTimeout(() => {
+        themeCard.style.boxShadow = "-1rem 1rem 1rem rgba(0, 0, 0, 0.5)"
+        root.style.setProperty("--color", themes[themeCount])
+
+    }, 500)
+})
+
+
+function clearInput() {
+    user.value = ""
+    pass.value = ""
+}
+
+function modalDialog(option, err) {
+    if (option === "block") {
+        const {title, msg} = err
+        const errTitle = document.querySelector(".err-title")
+        const errMsg = document.querySelector(".err-msg")
+        errTitle.textContent = title;
+        errMsg.textContent = msg;
+    }
     overlay.style.display = option
     modal.style.display = option
 }

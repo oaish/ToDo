@@ -1,8 +1,3 @@
-let tasks = {
-    deleted: [],
-    added: []
-}
-
 function strike(checkbox) {
     let label = checkbox.parentNode;
     if (checkbox.checked) {
@@ -28,21 +23,23 @@ async function add(event) {
     let ins = {
         insert: text
     }
-    const res = await  fetch('/add', {
+    const res = await  fetch('/ToDo/add', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(ins)
-    })
-    location.reload()
+    }).then(res => res.json())
+        .then(data => {
+            data.success && location.reload()
+        })
 }
 
 async function remove(task) {
     let del = {
         delete: task
     }
-    const res = await  fetch('/remove', {
+    const res = await  fetch('ToDo/remove', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -54,7 +51,6 @@ async function remove(task) {
 
 const divs = document.querySelectorAll('.list-card');
 
-// Function to apply animation classes
 function animateDivs() {
     divs.forEach((div, index) => {
         setTimeout(() => {
@@ -62,6 +58,19 @@ function animateDivs() {
         }, index * 150); // Delay each div by 500ms
     });
 }
+
+const logoutBtn = document.querySelector(".logout")
+logoutBtn.addEventListener('click', async () => {
+    const res = await fetch('/logout', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({destroy: true})
+    })
+        .then(res => res.json())
+        .then(data => data.destroy && (window.location.href = '/'))
+})
 
 // Call the animateDivs function after the page loads
 window.addEventListener('load', animateDivs);

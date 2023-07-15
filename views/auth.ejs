@@ -9,13 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overlock+SC&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/root.css">
     <link rel="stylesheet" href="/CSS/auth.css">
 </head>
 <body>
 
 <div class="container">
     <div class="card back-xl">
-        <div class="card-xl">
+        <div class="theme-card">
             <img src="/images/client.svg" alt="client">
         </div>
         <div class="card-xl-2">
@@ -27,14 +28,14 @@
 
     <div class="card back">
         <h1 class="AuthText">Login<span id='backBtn' class="close">&#xAB;</span></h1>
-        <form class="login" action="/login" method="post">
+        <form class="Authentication" action="/login" method="post">
             <label>
                 <input type="text" name="username" id="usr" placeholder="Enter Username" autocomplete="off"
                        spellcheck="false">
             </label>
             <div class="eye-cont">
                 <label class="pass">
-                    <input type="password" name="username" id="pass" placeholder="Enter Password" autocomplete="off"
+                    <input type="password" name="password" id="pass" placeholder="Enter Password" autocomplete="off"
                            spellcheck="false">
                 </label>
                 <img src="/images/eye.svg" alt="eye" class="eye">
@@ -49,13 +50,12 @@
 
 <div class="overlay"></div>
 <div class="modal">
-    <h1>Account Not Found</h1>
-    <p>Do you want to create a new account?</p>
-    <button type="button" class="btn btn-yes">Yes</button>
-    <button type="button" class="btn btn-no">No</button>
+    <h1 class="err-title">Account Not Found</h1>
+    <p class="err-msg">Do you want to create a new account?</p>
+    <button type="button" class="btn btn-ok">Okay</button>
 </div>
 
-<script src="/JS/login-script.js"></script>
+<script src="/JS/auth-script.js"></script>
 <script>
 
 </script>

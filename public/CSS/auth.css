@@ -21,7 +21,7 @@ body {
     position: absolute;
     width: 25rem;
     height: 30rem;
-    background: teal;
+    background: var(--color);
     border-radius: 0 1rem 1rem 0;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
 }
@@ -29,14 +29,15 @@ body {
 
 .back {
     background: #1c1c1c;
-    transition: transform 2s ease;
+    transition: transform 1.2s ease;
 }
 
 .front{
-    background: teal;
+    background: var(--color);
     display: flex;
     justify-content: center;
     text-align: center;
+    transition: 0.5s ease;
 }
 
 .front h1 {
@@ -61,23 +62,23 @@ body {
 .back h1 {
     margin: 10% 10% 5% 10%;
     font-size: 3rem;
-    color: teal;
+    color: var(--color);
     cursor: default;
 }
 
-.login {
+.Authentication {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login input {
+.Authentication input {
     all: unset;
     border: solid black;
     border-width: 3px 3px 0 0;
     box-shadow: inset -1rem 1rem 1rem rgba(0, 0, 0, 0.5);
-    background: teal;
+    background: var(--color);
     width: 20rem;
     height: 3rem;
     margin-block: 1rem;
@@ -95,7 +96,7 @@ input::placeholder {
 .btn {
     all: unset;
     box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
-    background: teal;
+    background: var(--color);
     height: 3rem;
     padding: 0.5rem 1rem;
     font-size: 2rem;
@@ -126,7 +127,7 @@ input::placeholder {
 }
 
 input:focus {
-    border-color: teal;
+    border-color: var(--color);
 }
 
 .overlay {
@@ -148,7 +149,7 @@ input:focus {
     background: #1c1c1c;
     border-radius: 2rem;
     box-shadow: 0 0 1rem;
-    border: 2px solid teal;
+    border: 2px solid var(--color);
     opacity: 1 !important;
     z-index: 9999;
     text-align: center;
@@ -156,7 +157,7 @@ input:focus {
 }
 
 .modal > h1 {
-    color: teal;
+    color: var(--color);
     font-size: 2.5rem;
     margin-top: 1em;
 }
@@ -168,12 +169,12 @@ input:focus {
 }
 
 .btn {
-    border: 2px solid teal;
+    border: 2px solid var(--color);
 }
 
 .btn-no {
     background: none;
-    color: teal;
+    color: var(--color);
 }
 
 .close:hover {
@@ -190,27 +191,30 @@ input:focus {
     align-items: center;
 }
 
-.card-xl {
+.theme-card {
     width: 16rem;
     height: 15rem;
-    background: teal;
+    background: var(--color);
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: 0.5s ease;
     border-radius: 0 1.5rem 0 1.5rem;
     box-shadow: -1rem 1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
-.card-xl > img {
+.theme-card > img {
     width: 13rem;
+    pointer-events: none;
 }
 
-.card-xl > img:hover {
+.theme-card > img:hover {
     opacity: 0.9;
 }
 
 .card-xl-2 > * {
-    color: teal;
+    color: var(--color);
     background: #1c1c1c;
     margin-inline: 0.5rem;
 }
@@ -244,6 +248,23 @@ input:focus {
     .back-xl {
         transform: none;
         z-index: 1;
+    }
+    .modal {
+        inset: 0;
+        top: 50%;
+        width: 25rem;
+        height: 14rem;
+    }
+
+    .modal > h1 {
+        font-size: 2.3rem;
+        margin-bottom: 0;
+        margin-top: 2%;
+    }
+
+    .modal > p {
+        font-size: 1.3rem;
+        margin-bottom: 0;
     }
 }
 
