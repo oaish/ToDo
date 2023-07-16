@@ -11,10 +11,6 @@
   </head>
   <body>
 
-  <div class="logout">
-    <img id="logout" src="/images/logout.png" alt="logout">
-  </div>
-
   <section id="title" class="flex">
 
     <div class="theme">
@@ -25,6 +21,7 @@
     </div>
     <div class="title-card">
       <h1><%= title %></h1>
+      <img id="logout" src="/images/logout_win.png" alt="logout" title="Logout">
     </div>
   </section>
   <section id="list" class="flex">
@@ -44,7 +41,9 @@
         <form action="/add" method="post" class="input-card">
           <label for="text"></label>
           <input type="text" class="sub-text" name="text" id="text" placeholder="Add a new task" autocomplete="off" spellcheck="true">
-          <button type="submit" class="sub-btn">+</button>
+          <button type="submit" class="sub-btn">
+            <img id="plus" src="/images/plus.svg" alt="plus" title="Add a New Item">
+          </button>
         </form>
       </div>
     </div>

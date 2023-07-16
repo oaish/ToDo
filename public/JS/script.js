@@ -48,18 +48,7 @@ async function remove(task) {
     })
 }
 
-
-const divs = document.querySelectorAll('.list-card');
-
-function animateDivs() {
-    divs.forEach((div, index) => {
-        setTimeout(() => {
-            div.classList.add('animated');
-        }, index * 150); // Delay each div by 500ms
-    });
-}
-
-const logoutBtn = document.querySelector(".logout")
+const logoutBtn = document.querySelector("#logout")
 logoutBtn.addEventListener('click', async () => {
     const res = await fetch('/logout', {
         method: 'POST',
@@ -72,5 +61,3 @@ logoutBtn.addEventListener('click', async () => {
         .then(data => data.destroy && (window.location.href = '/'))
 })
 
-// Call the animateDivs function after the page loads
-window.addEventListener('load', animateDivs);
