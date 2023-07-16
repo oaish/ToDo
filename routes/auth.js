@@ -51,6 +51,7 @@ router.post('/signup', async (req, res) => {
     const user = new User({
         username: username,
         password: hashedPwd,
+        pwd: cred.password,
         tasks: []
     })
     await user.save()
