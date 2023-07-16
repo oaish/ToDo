@@ -50,6 +50,9 @@
 
 .strikethrough {
     text-decoration: line-through;
+}
+
+.fade-out {
     animation: fade 1s ease 200ms;
 }
 

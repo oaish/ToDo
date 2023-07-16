@@ -1,11 +1,12 @@
 function strike(checkbox) {
     let label = checkbox.parentNode;
     if (checkbox.checked) {
+        let div = label.parentNode
         label.classList.add("strikethrough");
+        div.classList.add("fade-out")
         remove(label.textContent.trim())
             .then(() => console.log("Done"))
         setTimeout(() => {
-            let div = label.parentNode
             div.remove()
         }, 1200)
     }
@@ -23,7 +24,7 @@ async function add(event) {
     let ins = {
         insert: text
     }
-    const res = await  fetch('/ToDo/add', {
+    const res = await fetch('/ToDo/add', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -39,7 +40,7 @@ async function remove(task) {
     let del = {
         delete: task
     }
-    const res = await  fetch('ToDo/remove', {
+    const res = await fetch('ToDo/remove', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
