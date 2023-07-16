@@ -146,7 +146,7 @@ themeCard.addEventListener('click', () => {
 function clearInput() {
     user.value = ""
     pass.value = ""
-    pass.type = "password";
+    pass.type = "password"; 
     eye.setAttribute("src", "/images/eye.svg")
     eye.style.display = "none";
 }
