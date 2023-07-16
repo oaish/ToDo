@@ -115,14 +115,13 @@ input::placeholder {
 }
 
 .eye {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     position: absolute;
     cursor: pointer;
     pointer-events: all;
     top: 35%;
     left: 82%;
-    filter: grayscale(100%);
     display: none;
 }
 
@@ -270,4 +269,8 @@ input:focus {
 
 .fade-in {
     z-index: 2;
+}
+
+::-ms-reveal {
+    display: none;
 }

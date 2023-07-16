@@ -60,10 +60,10 @@ function handleBackClick() {
 eye.onclick = function () {
     if (pass.type === "text") {
         pass.type = "password";
-        eye.setAttribute("src", "/images/invisible.svg")
+        eye.setAttribute("src", "/images/eye.svg")
     } else {
         pass.type = "text";
-        eye.setAttribute("src", "/images/eye.svg")
+        eye.setAttribute("src", "/images/invisible.svg")
     }
 }
 
