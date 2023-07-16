@@ -12,8 +12,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const cred = req.body
-    const user = await User.findOne({username: cred.username})
+    const cred = req.body;
+    const username = cred.username.trim()
+    const user = await User.findOne({username: username})
     if (!user)
         return res.status(400).json({
             error: true,
@@ -24,7 +25,7 @@ router.post('/login', async (req, res) => {
     const isValid = await bcrypt.compare(cred.password, user.password)
     if (isValid) {
         req.session.isAuth = true;
-        req.session.user = cred.username;
+        req.session.user = username;
         res.status(200).json({auth: true})
     } else {
         res.status(400).json({
@@ -37,7 +38,8 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     const cred = req.body
-    const userExists = await User.findOne({username: cred.username})
+    const username = cred.username.trim()
+    const userExists = await User.findOne({username: username})
     if (userExists) {
         return res.status(400).json({
             error: true,
@@ -47,7 +49,7 @@ router.post('/signup', async (req, res) => {
     }
     const hashedPwd = await bcrypt.hash(cred.password, 10)
     const user = new User({
-        username: cred.username,
+        username: username,
         password: hashedPwd,
         tasks: []
     })
