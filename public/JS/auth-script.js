@@ -146,6 +146,8 @@ themeCard.addEventListener('click', () => {
 function clearInput() {
     user.value = ""
     pass.value = ""
+    pass.type = "password";
+    eye.style.display = "none";
 }
 
 function modalDialog(option, err) {
