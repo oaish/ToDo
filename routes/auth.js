@@ -4,7 +4,11 @@ const bcrypt = require("bcrypt")
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.render("auth")
+    if(req.session.isAuth) {
+        res.redirect('/ToDo/')
+    } else {
+        res.render("auth")
+    }
 })
 
 router.post('/login', async (req, res) => {
