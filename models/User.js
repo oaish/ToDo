@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const mongoURI = "mongodb://0.0.0.0:27017/ToDo"
-const atlasURI = "mongodb+srv://mercenary:adgjmptw786@mercenarycluster.k8r01yr.mongodb.net/ToDo?retryWrites=true&w=majority"
+const atlasURI = process.env.MONGO
 const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
