@@ -3,7 +3,7 @@ const atlasURI = process.env.MONGO
 const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
-mongoose.connect(atlasURI || mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const UserSchema = new Schema({
     username: {
